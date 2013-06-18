@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta httpEquiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>${message}</title>
+    <link href="bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <style type="text/css">
+        body {
+            padding-top: 60px;
+            padding-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 class="text-error">${message}</h1>
+
+    <p class="lead">${description}</p>
+
+    <h4>Input given</h4>
+    <span>${input}</span>
+
+    <h4>Rules available</h4>
+    <table class="table table-stripped">
+        <thead>
+        <tr>
+            <th>Key</th>
+            <th>Pattern</th>
+            <th>URL</th>
+            <th>Regex</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% ruleMap.each { key, rule -> %>
+        <tr class="rule">
+            <td>${key}</td>
+            <td>${rule.pattern}</td>
+            <td>${rule.url}</td>
+            <td>${rule.regex}</td>
+        </tr>
+        <% } %>
+        </tbody>
+    </table>
+
+</div>
+</body>
+</html>

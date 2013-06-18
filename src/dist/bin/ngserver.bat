@@ -1,0 +1,1 @@
+java -Xmx8m -XX:MaxPermSize=9m -cp ..\lib\*;..\conf com.martiansoftware.nailgun.NGServer %*
