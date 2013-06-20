@@ -18,9 +18,45 @@ in mind.
 ## The rules definition
 **conf/config.groovy**
 
-[pending]
+This files contains the deciphurl's rules definition. deciphurl interpolates a URL variable with 
+a regex group extracted from the input. {1} refers to the first group, {2} the
+second group and so on. The URL **must** contain a protocol e.g. `http://`.
+
+Let's say if you have the following rule:
+
+    jenkins {
+        pattern = /^(j#)(\d+)$\
+        url = "https://ci.jenkins-ci.org/view/All/job/jenkins_main_trunk/{2}/"
+    }
+
+When your input is `j#2638`, deciphurl will return `https://ci.jenkins-ci.org/view/All/job/jenkins_main_trunk/2638/`.
+{2} in the URL refers to the second group in the regex pattern, which is the digits.
+
+You can have as many rules as you want in this file. deciphurl will try to find a matching rule
+based on the pattern, sequentially from top to bottom of the file. By default, this file only
+contains the following rule:
+
+    google_define {
+        pattern = /([\W\w]+)/
+        url = "http://www.google.com/search?q=define:{0.1}"
+    }
+This rules takes any inputs and `google define` them.
 
 ## Configuration
 **conf/deciphurl.ini**
 - port: deciphurl uses nailgun to speed up the input processing, hence it requires a port to be specified
 - key: by default Win+C. Read [this](http://www.autohotkey.com/docs/Hotkeys.htm#Symbols) to configure.
+
+### Advance rules
+deciphurl also supports group multi match. By default when the variable in the input is a single digit,
+it will refer to the group from the `first match`. To use the multi match support, use a dot: `{match.group}`.
+`match` starts from 0. So when a variable is {1}, it is actually equivalent with {0.1}.
+
+See the following rule:
+
+    {
+        multiMatchRule.pattern = /(\d)(\d)/
+        multiMatchRule.url = "http://multi.com/{2.2}{2.1}{1.2}{1.1}{0.2}{0.1}{2}{1}"
+    }
+
+When the input is `123456`, the interpolation result is `http://multi.com/65432121`.
