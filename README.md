@@ -17,6 +17,7 @@ in mind.
 
 ## The rules definition
 **conf/config.groovy**
+> live change (no restart required)
 
 This files contains the deciphurl's rules definition. deciphurl interpolates a URL variable with 
 a regex group extracted from the input. {1} refers to the first group, {2} the
@@ -44,6 +45,8 @@ This rules takes any inputs and `google define` them.
 
 ## Configuration
 **conf/deciphurl.ini**
+> restart required
+
 - port: deciphurl uses nailgun to speed up the input processing, hence it requires a port to be specified
 - key: by default Win+C. Read [this](http://www.autohotkey.com/docs/Hotkeys.htm#Symbols) to configure.
 
