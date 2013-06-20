@@ -47,7 +47,10 @@ This rules takes any inputs and `google define` them.
 - port: deciphurl uses nailgun to speed up the input processing, hence it requires a port to be specified
 - key: by default Win+C. Read [this](http://www.autohotkey.com/docs/Hotkeys.htm#Symbols) to configure.
 
-### Advance rules
+## Building
+`gradle distZip`
+
+## Advance rules
 deciphurl also supports group multi match. By default when the variable in the input is a single digit,
 it will refer to the group from the `first match`. To use the multi match support, use a dot: `{match.group}`.
 `match` starts from 0. So when a variable is {1}, it is actually equivalent with {0.1}.
