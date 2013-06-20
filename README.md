@@ -4,9 +4,8 @@
 > deciphurl enables a user to highlight a text, press win+c, and open the referred URL in the browser.
 
 deciphurl connects human with URL again. In a high bandwidth communication organization, often people are 
-having a conversation by email, IM, or a dedicated chat room. Some of these programs doesn't allow hyperlinks,
-and some people just forgot to put them or find long URL annoying. deciphurl was developed to tackle this problem
-in mind.
+having a conversation by email, IM, or a dedicated chat room. Some of these programs doesn't support hyperlink,
+and some people just forgot to put them or find long URL annoying. deciphurl was developed to tackle this problem.
 
 ## Getting started
 1. Requirement: JRE 1.5+, as of 1.1.1 only works for Windows.
