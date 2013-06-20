@@ -32,6 +32,6 @@ package com.ceilfors.deciphurl
 rule {
     google_define {
         pattern = /([\W\w]+)/
-        url = "www.google.com/search?q=define:{1}"
+        url = "http://www.google.com/search?q=define:{1}"
     }
 }

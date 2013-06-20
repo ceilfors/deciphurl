@@ -80,7 +80,7 @@ public class Main {
             if (rule) {
                 log.info("Rule pattern used: {}", rule.pattern)
                 def interpolator = rule.regex ? regexUrlInterpolator : exactUrlInterpolator
-                Desktop.getDesktop().browse(new URI(interpolator.interpolate(rule, URLEncoder.encode(input, "UTF-8"))))
+                Desktop.getDesktop().browse(encodeUrlStringToURI(interpolator.interpolate(rule, input)))
 
             } else {
                 log.info("Couldn't find a matching rule, creating error.html")
@@ -96,6 +96,12 @@ public class Main {
         } catch (Exception e) {
             log.error("Unexpected error.", e)
         }
+    }
+
+    private static encodeUrlStringToURI(urlString) {
+        def url = new URL(urlString);
+        return new URI(url.getProtocol(), url.getUserInfo(), url.getHost(), url.getPort(),
+                url.getPath(), url.getQuery(), url.getRef());
     }
 }
 
