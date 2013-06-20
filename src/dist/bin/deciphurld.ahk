@@ -1,4 +1,11 @@
-; Reads deciphurl.ini to extracts out the port
+;;
+; Register subroutine to kill ngserver first!
+;;
+OnExit, ExitSub
+
+;;
+; Starts ngserver
+;;
 IniRead, port, %A_ScriptDir%\..\conf\deciphurl.ini, ngserver, port
 if port = ERROR
 {
@@ -11,7 +18,6 @@ if port not between 1 and 65535
     ExitApp
 }
 
-; Starts ngserver.
 FileCreateDir %A_ScriptDir%\..\logs
 Run, ngserver.bat %port% > %A_ScriptDir%\..\logs\ngserver.out.txt, , Hide UseErrorLevel, ngserverpid
 Sleep 2000
@@ -22,19 +28,23 @@ if ErrorLevel = 0
     ExitApp
 }
 
-#Persistent
-OnExit, ExitSub
-return
-
-ExitSub:
-RunWait, %A_ScriptDir%\ng.exe --nailgun-port %port% ng-stop, , Hide
-if ErrorLevel = ERROR
+;;
+; Register hotkey
+;;
+IniRead, key, %A_ScriptDir%\..\conf\deciphurl.ini, main, key
+if key = ERROR
 {
-    Run, taskkill /pid %ngserverpid% /T /F, , Hide ; if ng-stop fail, force with taskkill
+    MsgBox, key must be set in the conf\deciphurl.ini
+    ExitApp
 }
-ExitApp
+Hotkey, %key%, CallDeciphurl, On
 
-#C::
+
+return
+;;
+; Subroutines
+;;
+CallDeciphurl:
 clipboard = ; Empty the clipboard for ClipWait to work
 Send, ^c
 ClipWait, 5
@@ -50,4 +60,13 @@ if ErrorLevel = ERROR
     MsgBox, deciphurl failed to interpolate, please see the log file in the logs directory
     return
 }
+return
+
+ExitSub:
+RunWait, %A_ScriptDir%\ng.exe --nailgun-port %port% ng-stop, , Hide
+if ErrorLevel = ERROR
+{
+    Run, taskkill /pid %ngserverpid% /T /F, , Hide ; if ng-stop fail, force with taskkill
+}
+ExitApp
 return
