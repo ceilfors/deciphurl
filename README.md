@@ -54,9 +54,9 @@ it will refer to the group from the `first match`. To use the multi match suppor
 
 See the following rule:
 
-    {
-        multiMatchRule.pattern = /(\d)(\d)/
-        multiMatchRule.url = "http://multi.com/{2.2}{2.1}{1.2}{1.1}{0.2}{0.1}{2}{1}"
+    multiMatchRule {
+        pattern = /(\d)(\d)/
+        url = "http://multi.com/{2.2}{2.1}{1.2}{1.1}{0.2}{0.1}{2}{1}"
     }
 
 When the input is `123456`, the interpolation result is `http://multi.com/65432121`.
