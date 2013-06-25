@@ -50,7 +50,3 @@ dependencies {
 }
 
 mainClassName = "com.ceilfors.deciphurl.Main"
-
-run {
-    debug true
-}
