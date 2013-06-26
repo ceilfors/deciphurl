@@ -8,8 +8,8 @@ having a conversation by email, IM, or a dedicated chat room. Some of these prog
 and some people just forgot to put them or find long URL annoying. deciphurl was developed to tackle this problem.
 
 ## Getting started
-1. Requirement: JRE 1.5+, as of 1.1.1 only works for Windows.
-1. Download the latest release (1.1.1) at https://bintray.com/ceilfors/generic/deciphurl
+1. Requirement: JRE 1.5+, only works in Windows for now.
+1. Download the latest release at https://bintray.com/ceilfors/generic/deciphurl
 1. Extract the zip
 1. Run deciphurld.exe (or if you have AutoHotkey installed, you can run the deciphurld.ahk)
 1. Highlight any text, press Win+C, _google define_ will be opened!
