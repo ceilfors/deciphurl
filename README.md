@@ -11,8 +11,9 @@ and some people just forgot to put them or find long URL annoying. deciphurl was
 1. Requirement: JRE 1.5+, as of 1.1.1 only works for Windows.
 1. Download the latest release (1.1.1) at https://bintray.com/ceilfors/generic/deciphurl
 1. Extract the zip
-1. Run deciphurld.exe (or if you have AutoHotkey installed, just run the deciphurld.ahk)
-1. Highlight any text and _google define_ will be opened!
+1. Run deciphurld.exe (or if you have AutoHotkey installed, you can run the deciphurld.ahk)
+1. Highlight any text, press Win+C, _google define_ will be opened!
+1. Edit the conf/config.groovy to configure the rules.
 
 ## The rules definition
 **conf/config.groovy**
@@ -41,6 +42,8 @@ contains the following rule:
         url = "http://www.google.com/search?q=define:{0.1}"
     }
 This rules takes any inputs and `google define` them.
+
+This file is a [groovy config](http://groovy.codehaus.org/ConfigSlurper), so it accepts slashy strings. 
 
 ## Configuration
 **conf/deciphurl.ini**
