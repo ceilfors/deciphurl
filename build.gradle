@@ -50,3 +50,24 @@ dependencies {
 }
 
 mainClassName = "com.ceilfors.deciphurl.Main"
+
+task createExe {
+    def bin = file("$buildDir/bin")
+    outputs.dir bin
+    doLast {
+        bin.mkdirs()
+        // See notes: http://www.autohotkey.com/docs/Scripts.htm#ahk2exe
+        // failure message : Failed to compile
+        // success message: Successfully compiled
+        def proc = """$projectDir/autohotkey/Compiler/Ahk2exe.exe /in "$projectDir/src/dist/bin/deciphurld.ahk" /out "$buildDir/bin/deciphurld.exe" /icon "$projectDir/src/icon/deciphurl.ico" """.execute()
+        proc.waitFor()
+        def out = proc.in.text
+        if (out.contains("Failed")) {
+            throw new GradleScriptException("Failed to create deciphurld.exe. Pay attention to the the popup message. Error was message: ${out}", null)
+        }
+    }
+}
+
+applicationDistribution.from(createExe) {
+    into "bin"
+}
