@@ -19,7 +19,7 @@ if port not between 1 and 65535
 }
 
 FileCreateDir %A_ScriptDir%\..\logs
-Run, ngserver.bat %port% > %A_ScriptDir%\..\logs\ngserver.out.txt, , Hide UseErrorLevel, ngserverpid
+Run, ngserver.bat %port% > "%A_ScriptDir%\..\logs\ngserver.out.txt", , Hide UseErrorLevel, ngserverpid
 Sleep 2000
 Process, Exist, %ngserverpid%
 if ErrorLevel = 0
@@ -39,8 +39,8 @@ if key = ERROR
 }
 Hotkey, %key%, CallDeciphurl, On
 
-
 return
+
 ;;
 ; Subroutines
 ;;
